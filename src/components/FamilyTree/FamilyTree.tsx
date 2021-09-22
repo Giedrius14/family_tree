@@ -32,7 +32,8 @@ const FamilyTree = () => {
                     lastName: 'lastName2',
                     age: 20,
                     avatar: '',
-                    parent: 1
+                    parent: 1,
+                    children: []
                 },
                 {
                     id: 3,
@@ -40,7 +41,8 @@ const FamilyTree = () => {
                     lastName: 'lastName3',
                     age: 20,
                     avatar: '',
-                    parent: 1
+                    parent: 1,
+                    children: []
                 }
             ]
         }
