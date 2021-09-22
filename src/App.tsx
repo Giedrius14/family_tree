@@ -1,14 +1,14 @@
 import React from 'react';
-import { Counter } from './features/counter/Counter';
-import './App.css';
-import 'typeface-roboto'
+import './App.scss';
+import 'typeface-roboto';
+import FamilyTree from './components/FamilyTree/FamilyTree';
 
 function App() {
-  return (
-    <div className="App">
-        <Counter />
-    </div>
-  );
+    return (
+        <div className="App">
+            <FamilyTree/>
+        </div>
+    );
 }
 
 export default App;
