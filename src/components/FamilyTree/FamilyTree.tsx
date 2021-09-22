@@ -2,14 +2,8 @@ import React from 'react';
 import { FamilyMember } from './types';
 
 const FamilyTree = () => {
-    const renderMembers = (members: FamilyMember[]) => {
-        if (typeof (members) !== 'object') {
-            return (
-                <div>{members}</div>
-            );
-        }
-
-        return (
+    const renderMembers = (members: FamilyMember[]) =>
+        (
             <ul>
                 {
                     members.map(({id, firstName, children}: FamilyMember) =>
@@ -22,7 +16,6 @@ const FamilyTree = () => {
                 }
             </ul>
         );
-    };
 
     const initialState = [
         {
