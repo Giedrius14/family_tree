@@ -1,12 +1,15 @@
 import React from 'react';
 import './App.scss';
 import 'typeface-roboto';
-import FamilyTree from './components/FamilyTree/FamilyTree';
+import Header from './components/Header/Header';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
     return (
         <div className="App">
-            <FamilyTree/>
+            <BrowserRouter>
+                <Header></Header>
+            </BrowserRouter>
         </div>
     );
 }

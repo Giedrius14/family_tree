@@ -1,0 +1,49 @@
+.Header {
+}
+
+.navContainer {
+  display: flex;
+  justify-content: space-evenly;
+  list-style: none;
+  border-bottom: 2px solid #d1d5da;
+  margin: 10px 10px -1px;
+  text-decoration: none;
+}
+
+.listItem {
+  padding: 16px 8px;
+  margin-right: 16px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #586069;
+  border-bottom: 2px solid transparent;
+  text-decoration: none;
+}
+
+.listItem:hover {
+  cursor: pointer;
+  color: #24292e;
+  border-bottom-color: #d1d5da;
+  transition: 0.2s ease;
+  text-decoration: none;
+  background-color: #cbe5ff;
+}
+
+.link {
+  display: block;
+  padding: 10px 20px;
+}
+
+.active {
+  font-weight: 600;
+  color: #24292e;
+  border-bottom-color: #e36209;
+  text-decoration: none;
+}
+
+.active:hover {
+  font-weight: 600;
+  color: #24292e;
+  border-bottom-color: #e36209;
+  text-decoration: none;
+}
