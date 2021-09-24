@@ -4,11 +4,11 @@ import '@testing-library/jest-dom/extend-expect';
 import FamilyTree from './FamilyTree';
 
 describe('<FamilyTree />', () => {
-  test('it should mount', () => {
-    render(<FamilyTree />);
-    
-    const familyTree = screen.getByTestId('FamilyTree');
+    test('it should mount', () => {
+        render(<FamilyTree/>);
 
-    expect(familyTree).toBeInTheDocument();
-  });
+        const familyTree = screen.getByTestId('FamilyTree');
+
+        expect(familyTree).toBeInTheDocument();
+    });
 });

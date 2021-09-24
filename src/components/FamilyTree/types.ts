@@ -1,9 +1,9 @@
 export interface FamilyMember {
-    id: number;
+    id: string;
     parent: number;
     firstName: string;
     lastName: string;
     age: number;
-    avatar: string;
+    picture: string;
     children: FamilyMember[];
 }

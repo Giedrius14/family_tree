@@ -1,43 +1,56 @@
-.FamilyTree {}
+.FamilyTree {
+}
 
 .personContainer {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    width: 200px;
-    height: 100px;
-    margin: auto;
-    box-shadow: -4px 3px 10px 4px lightgrey;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  width: 200px;
+  height: 100px;
+  margin: auto;
+  box-shadow: -4px 3px 10px 4px lightgrey;
 }
 
 .personDetails {
-    display: flex;
-    flex-direction: row;
-    padding-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 10px;
 }
 
-.personAvatar {
-    display: flex;
-    flex-direction: column;
-    border-radius: 50%;
-    box-shadow: 0 0 6px #ccc;
-    width: 50px;
-    height: 50px;
+.personPicture {
+  display: flex;
+  flex-direction: column;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #ccc;
+  width: 50px;
+  height: 50px;
 }
+
 .personName {
-    display: flex;
-    flex-direction: column;
-    padding-left: 10px;
-    padding-right: 10px;
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .actionButtons {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end
 }
 
 .miniFab {
-    max-height: 30px;
-    max-width: 35px;
+  max-height: 30px;
+  max-width: 35px;
+}
+
+.drawerPaper {
+  width: 40%;
+  padding: 30px 30px 30px 30px;
+}
+
+@media (max-width: 768px) {
+  .drawerPaper {
+    width: 70%;
+  }
 }

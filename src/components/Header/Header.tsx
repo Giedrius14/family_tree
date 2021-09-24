@@ -7,11 +7,11 @@ const Header = () => {
     const location = useLocation();
     const menuItems = [
         {
-            title: 'View mode',
+            title: 'View Tree',
             pageURL: '/'
         },
         {
-            title: 'Edit mode',
+            title: 'Edit Tree',
             pageURL: '/edit'
         }
     ];
@@ -29,7 +29,7 @@ const Header = () => {
             </ul>
             <Switch>
                 <Route path="/edit">
-                    <FamilyTree editMode={true}/>
+                    <FamilyTree editingView={true}/>
                 </Route>
                 <Route path="/" component={FamilyTree}>
                 </Route>
