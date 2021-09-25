@@ -1,9 +1,10 @@
 export interface FamilyMember {
     id: string;
-    parent: number;
+    parentId: string;
     firstName: string;
     lastName: string;
-    age: number;
+    birthDate: string;
+    deathDate: string;
     picture: string;
-    children: FamilyMember[];
+    children: any[] | FamilyMember[];
 }

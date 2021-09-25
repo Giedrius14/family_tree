@@ -6,18 +6,24 @@
   justify-content: space-evenly;
   list-style: none;
   border-bottom: 2px solid #d1d5da;
-  margin: 10px 10px -1px;
   text-decoration: none;
+  padding: 0;
+  margin-top: 0;
 }
 
 .listItem {
-  padding: 16px 8px;
-  margin-right: 16px;
+  height: 100%;
+  width: 100%;
   font-size: 14px;
   line-height: 1.5;
   color: #586069;
   border-bottom: 2px solid transparent;
   text-decoration: none;
+
+  a {
+    padding: 20px 10px;
+    text-decoration: none;
+  }
 }
 
 .listItem:hover {

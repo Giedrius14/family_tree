@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import styles from './CreateEditForm.module.css';
 import { useAppDispatch } from '../../app/hooks';
-import { addMember } from '../FamilyTree/reducer/familyReducer';
+import { addMember, updateMember } from '../FamilyTree/reducer/familyReducer';
 import { FamilyMember } from '../FamilyTree/types';
 
 const CreateEditForm = ({selectedMember, isEditMode, handleClose}: {selectedMember: FamilyMember, isEditMode: boolean, handleClose: any}) => {
-    const [formData, setFormData] = useState({} as FamilyMember);
+    const [formData, setFormData] = useState({parent: '', firstName: '', lastName: '', birthDate: '', deathDate: '', picture: ''} as any as FamilyMember);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -26,7 +26,13 @@ const CreateEditForm = ({selectedMember, isEditMode, handleClose}: {selectedMemb
         event.preventDefault();
         event.stopPropagation();
 
-        dispatch(addMember({formData, selectedMember}));
+        if (isEditMode) {
+            dispatch(updateMember({formData, selectedMember}));
+        }
+        else {
+            dispatch(addMember({formData, selectedMember}));
+        }
+
         console.log('event', formData, event);
         handleClose();
     };
@@ -57,12 +63,23 @@ const CreateEditForm = ({selectedMember, isEditMode, handleClose}: {selectedMemb
                 </label>
                 <br/>
                 <label>
-                    Age:
+                    Birth Date:
                     <input
                         type="number"
-                        name="age"
+                        name="birthDate"
                         placeholder="Enter your last name"
-                        value={formData.age}
+                        value={formData.birthDate}
+                        onChange={onChangeHandler}
+                    />
+                </label>
+                <br/>
+                <label>
+                    Death Date:
+                    <input
+                        type="number"
+                        name="deathDate"
+                        placeholder="Enter your last name"
+                        value={formData.deathDate}
                         onChange={onChangeHandler}
                     />
                 </label>
