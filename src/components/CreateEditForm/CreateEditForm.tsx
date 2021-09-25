@@ -5,7 +5,7 @@ import { addMember, updateMember } from '../FamilyTree/reducer/familyReducer';
 import { FamilyMember } from '../FamilyTree/types';
 
 const CreateEditForm = ({selectedMember, isEditMode, handleClose}: {selectedMember: FamilyMember, isEditMode: boolean, handleClose: any}) => {
-    const [formData, setFormData] = useState({parent: '', firstName: '', lastName: '', birthDate: '', deathDate: '', picture: ''} as any as FamilyMember);
+    const [formData, setFormData] = useState({firstName: '', lastName: '', birthDate: '', deathDate: '', picture: ''} as any as FamilyMember);
     const dispatch = useAppDispatch();
 
     useEffect(() => {

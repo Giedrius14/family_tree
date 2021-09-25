@@ -14,7 +14,7 @@ const FamilyTree = ({editingView}: {editingView?: boolean}) => {
     const familyMembers = useAppSelector(selectFamilyMembers);
     const dispatch = useAppDispatch();
 
-    const addRootElement = (familyMembers: FamilyMember[]) => {
+    useEffect(() => {
         if (!familyMembers.length) {
             dispatch(addMember({
                 formData: {
@@ -30,9 +30,7 @@ const FamilyTree = ({editingView}: {editingView?: boolean}) => {
                 selectedMember: {} as FamilyMember
             }));
         }
-    };
-
-    useEffect(() => addRootElement(familyMembers), [familyMembers]);
+    }, [dispatch, familyMembers]);
 
     const toggleDrawer = (member: FamilyMember, editMode?: boolean) => (event: any) => {
         if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -92,9 +90,12 @@ const FamilyTree = ({editingView}: {editingView?: boolean}) => {
         );
 
     console.log('familyMembers', familyMembers);
+    //todo nice to have zoom, transform scale
     return (
-        <div>
-            {renderMembers(familyMembers)}
+        <div className={styles.FamilyTree}>
+            <div className={styles.treeContainer}>
+                {renderMembers(familyMembers)}
+            </div>
             <Drawer
                 anchor="right"
                 open={isDrawerOpen}

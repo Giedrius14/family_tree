@@ -21,7 +21,10 @@ const initialState: FamilyTreeState = {
             deathDate: '',
             parentId: '',
             picture: 'https://static.wikia.nocookie.net/lotr/images/e/e7/Gandalf_the_Grey.jpg',
-            children: ['2', '3']
+            children: [
+                '2',
+                '3'
+            ]
         },
         '2': {
             id: '2',
@@ -42,6 +45,56 @@ const initialState: FamilyTreeState = {
             picture: '',
             parentId: '1',
             children: []
+        },
+        ku01lv64c1t8eqmf2qn: {
+            firstName: 'Giedrius',
+            lastName: '',
+            birthDate: '',
+            deathDate: '',
+            picture: '',
+            id: 'ku01lv64c1t8eqmf2qn',
+            children: [],
+            parentId: '1'
+        },
+        ku01lzmaqbw55qzpvso: {
+            firstName: 'firstName333333',
+            lastName: '',
+            birthDate: '',
+            deathDate: '',
+            picture: '',
+            id: 'ku01lzmaqbw55qzpvso',
+            children: [],
+            parentId: '3'
+        },
+        ku01m3twxw4cicq4tys: {
+            firstName: '',
+            lastName: '12',
+            birthDate: '',
+            deathDate: '',
+            picture: '',
+            id: 'ku01m3twxw4cicq4tys',
+            children: [],
+            parentId: 'ku01lzmaqbw55qzpvso'
+        },
+        ku01m8gzk79yu2z9vsq: {
+            firstName: 'Giedrius',
+            lastName: '',
+            birthDate: '',
+            deathDate: '',
+            picture: '',
+            id: 'ku01m8gzk79yu2z9vsq',
+            children: [],
+            parentId: '3'
+        },
+        ku01mc4b0pb9aoue31qd: {
+            firstName: 'firstName333333',
+            lastName: '',
+            birthDate: '',
+            deathDate: '',
+            picture: '',
+            id: 'ku01mc4b0pb9aoue31qd',
+            children: [],
+            parentId: '3'
         }
     }
 };
