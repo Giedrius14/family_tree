@@ -95,7 +95,7 @@ const createDataTree = (dataset: FamilyMember[]): FamilyMember[] => {
     const dataTree = [] as FamilyMember[];
     dataset.forEach((member: FamilyMember) => {
         if (member.parentId) {
-            hashTable[member.parentId].children.push(hashTable[member.id]);
+            hashTable[member.parentId]?.children.push(hashTable[member.id]);
         }
         else {
             dataTree.push(hashTable[member.id]);
