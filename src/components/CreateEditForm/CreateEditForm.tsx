@@ -20,7 +20,7 @@ const validationSchema = Yup.object({
 
 const CreateEditForm = ({selectedMember, isEditMode, handleClose}: {selectedMember: FamilyMember, isEditMode: boolean, handleClose: any}) => {
     const dispatch = useAppDispatch();
-    const parent = useAppSelector(selectMemberById(selectedMember.parentId));
+    const parent = useAppSelector(selectMemberById(isEditMode ? selectedMember.parentId : selectedMember.id));
 
     const formik = useFormik({
         initialValues: (isEditMode ? {...selectedMember} :
@@ -66,7 +66,6 @@ const CreateEditForm = ({selectedMember, isEditMode, handleClose}: {selectedMemb
                 </div>
             </div>
             <form className={styles.formContainer} onSubmit={formik.handleSubmit}>
-                {isEditMode && selectedMember.parentId !== '' &&
                 <FormControl fullWidth error={formik.touched.relationship && Boolean(formik.errors.relationship)}>
                     <InputLabel id="relationship-label">Relationship to {isEditMode ? 'current parent' : 'selected member'}</InputLabel>
                     <Select
@@ -80,7 +79,6 @@ const CreateEditForm = ({selectedMember, isEditMode, handleClose}: {selectedMemb
                     </Select>
                     {formik.errors.relationship && <FormHelperText>{formik.errors.relationship}</FormHelperText>}
                 </FormControl>
-                }
                 <TextField
                     id="firstName"
                     name="firstName"

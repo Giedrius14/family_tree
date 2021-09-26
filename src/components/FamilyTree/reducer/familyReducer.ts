@@ -15,8 +15,8 @@ const initialState: FamilyTreeState = {
     members: {
         '1': {
             id: '1',
-            firstName: 'firstName',
-            lastName: 'lastName',
+            firstName: 'Gandalf',
+            lastName: 'The Grey',
             birthDate: '1800-08-08',
             deathDate: '',
             parentId: '',
@@ -29,80 +29,25 @@ const initialState: FamilyTreeState = {
         },
         '2': {
             id: '2',
-            firstName: 'firstName2',
-            lastName: 'lastName2',
+            firstName: 'Gollum',
+            lastName: '',
             birthDate: '1900-08-08',
             deathDate: '',
-            picture: '',
+            picture: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvJrlM-cfSK6IuVGnTh0KQzheSKkMzIlaoGw',
             parentId: '1',
             relationship: '',
             children: []
         },
         '3': {
             id: '3',
-            firstName: 'firstName3',
-            lastName: 'lastName3',
+            firstName: 'Sauron',
+            lastName: '',
             birthDate: '1900-08-08',
             deathDate: '',
-            picture: '',
+            picture: 'https://i.redd.it/be1sw1tji5s51.jpg',
             parentId: '1',
             relationship: '',
             children: []
-        },
-        ku01lv64c1t8eqmf2qn: {
-            firstName: 'Giedrius',
-            lastName: '',
-            birthDate: '',
-            deathDate: '',
-            picture: '',
-            id: 'ku01lv64c1t8eqmf2qn',
-            children: [],
-            relationship: '',
-            parentId: '1'
-        },
-        ku01lzmaqbw55qzpvso: {
-            firstName: 'firstName333333',
-            lastName: '',
-            birthDate: '',
-            deathDate: '',
-            picture: '',
-            id: 'ku01lzmaqbw55qzpvso',
-            children: [],
-            relationship: '',
-            parentId: '3'
-        },
-        ku01m3twxw4cicq4tys: {
-            firstName: '',
-            lastName: '12',
-            birthDate: '',
-            deathDate: '',
-            picture: '',
-            id: 'ku01m3twxw4cicq4tys',
-            children: [],
-            relationship: '',
-            parentId: 'ku01lzmaqbw55qzpvso'
-        },
-        ku01m8gzk79yu2z9vsq: {
-            firstName: 'Giedrius',
-            lastName: '',
-            birthDate: '',
-            deathDate: '',
-            picture: '',
-            id: 'ku01m8gzk79yu2z9vsq',
-            children: [],
-            relationship: '',
-            parentId: '3'
-        },
-        ku01mc4b0pb9aoue31qd: {
-            firstName: 'firstName333333',
-            lastName: '',
-            birthDate: '',
-            deathDate: '',
-            picture: '',
-            id: 'ku01mc4b0pb9aoue31qd',
-            children: [],
-            relationship: '',
-            parentId: '3'
         }
     }
 };
