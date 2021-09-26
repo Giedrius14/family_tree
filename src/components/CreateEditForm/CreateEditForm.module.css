@@ -1,2 +1,24 @@
 .CreateEditForm {
 }
+
+.formContainer > div {
+    margin-bottom: 20px;
+}
+
+.parentDetails {
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+.parentDetails > div {
+    display: inherit;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-bottom: 20px;
+}
+
+.formTitle {
+    padding-right: 10px
+}

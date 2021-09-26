@@ -1,6 +1,7 @@
 .FamilyTree {
   max-width: 100%;
   overflow: auto;
+  padding: 20px;
 }
 
 .personContainer {
@@ -14,40 +15,6 @@
   box-shadow: -4px 3px 10px 4px lightgrey;
   border-radius: 5px;
   font-size: 15px;
-}
-
-.personDetails {
-  display: flex;
-  flex-direction: row;
-  padding-bottom: 10px;
-}
-
-.personPicture {
-  display: flex;
-  flex-direction: column;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  box-shadow: 0 0 6px #ccc;
-
-  img {
-    border-radius: inherit;
-    box-shadow: inherit;
-    height: inherit;
-    width: inherit;
-  }
-}
-
-.personName {
-  width: 130px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding-left: 10px;
-  padding-right: 10px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
 }
 
 .actionButtons {

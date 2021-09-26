@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../../app/store';
-import { FamilyMember } from '../types';
+import { FamilyMember, FamilyRelationship } from '../types';
 
 export interface FamilyTreeState {
     members: {[name: string]: FamilyMember};
@@ -21,6 +21,7 @@ const initialState: FamilyTreeState = {
             deathDate: '',
             parentId: '',
             picture: 'https://static.wikia.nocookie.net/lotr/images/e/e7/Gandalf_the_Grey.jpg',
+            relationship: '',
             children: [
                 '2',
                 '3'
@@ -34,6 +35,7 @@ const initialState: FamilyTreeState = {
             deathDate: '',
             picture: '',
             parentId: '1',
+            relationship: '',
             children: []
         },
         '3': {
@@ -44,6 +46,7 @@ const initialState: FamilyTreeState = {
             deathDate: '',
             picture: '',
             parentId: '1',
+            relationship: '',
             children: []
         },
         ku01lv64c1t8eqmf2qn: {
@@ -54,6 +57,7 @@ const initialState: FamilyTreeState = {
             picture: '',
             id: 'ku01lv64c1t8eqmf2qn',
             children: [],
+            relationship: '',
             parentId: '1'
         },
         ku01lzmaqbw55qzpvso: {
@@ -64,6 +68,7 @@ const initialState: FamilyTreeState = {
             picture: '',
             id: 'ku01lzmaqbw55qzpvso',
             children: [],
+            relationship: '',
             parentId: '3'
         },
         ku01m3twxw4cicq4tys: {
@@ -74,6 +79,7 @@ const initialState: FamilyTreeState = {
             picture: '',
             id: 'ku01m3twxw4cicq4tys',
             children: [],
+            relationship: '',
             parentId: 'ku01lzmaqbw55qzpvso'
         },
         ku01m8gzk79yu2z9vsq: {
@@ -84,6 +90,7 @@ const initialState: FamilyTreeState = {
             picture: '',
             id: 'ku01m8gzk79yu2z9vsq',
             children: [],
+            relationship: '',
             parentId: '3'
         },
         ku01mc4b0pb9aoue31qd: {
@@ -94,6 +101,7 @@ const initialState: FamilyTreeState = {
             picture: '',
             id: 'ku01mc4b0pb9aoue31qd',
             children: [],
+            relationship: '',
             parentId: '3'
         }
     }
@@ -110,11 +118,13 @@ const familySlice = createSlice({
     initialState,
     reducers: {
         addMember: (state, {payload: {formData, selectedMember}}: PayloadAction<FamilyAction>) => {
+            const parentId = formData.relationship === FamilyRelationship.Sibling ? state.members[selectedMember.parentId].id : selectedMember.parentId;
+
             const newMember = {
                 ...formData,
                 id: uniqueId(),
                 children: [],
-                parentId: selectedMember.id || ''
+                parentId
             };
 
             state.members[newMember.id] = newMember;
@@ -122,10 +132,13 @@ const familySlice = createSlice({
         removeMember: (state, {payload}: PayloadAction<FamilyMember>) => {
             delete state.members[payload.id];
         },
-        updateMember: (state, {payload: {formData, selectedMember}, payload}: PayloadAction<FamilyAction>) => {
+        updateMember: (state, {payload: {formData, selectedMember}}: PayloadAction<FamilyAction>) => {
+            const parentId = formData.relationship === FamilyRelationship.Sibling ? state.members[selectedMember.parentId].parentId : selectedMember.parentId;
+
             state.members[selectedMember.id] = {
                 ...state.members[selectedMember.id],
-                ...formData
+                ...formData,
+                parentId
             };
         },
     },
@@ -134,7 +147,7 @@ const familySlice = createSlice({
 const createDataTree = (dataset: FamilyMember[]): FamilyMember[] => {
     const hashTable = Object.create(null);
     dataset.forEach((member: any) => hashTable[member.id] = {...member, children: []});
-    const dataTree = [] as any;
+    const dataTree = [] as FamilyMember[];
     dataset.forEach((member: FamilyMember) => {
         if (member.parentId) {
             hashTable[member.parentId].children.push(hashTable[member.id]);
@@ -147,5 +160,6 @@ const createDataTree = (dataset: FamilyMember[]): FamilyMember[] => {
 };
 
 export const {addMember, removeMember, updateMember} = familySlice.actions;
+export const selectMemberById = (id: string) => (state: RootState) => state.family.members[id];
 export const selectFamilyMembers = (state: RootState) => createDataTree(Object.values(state.family.members));
 export default familySlice.reducer;

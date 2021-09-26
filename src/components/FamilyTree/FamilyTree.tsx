@@ -6,6 +6,7 @@ import { Create, PersonAdd, PersonRemove } from '@mui/icons-material';
 import CreateEditForm from '../CreateEditForm/CreateEditForm';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { addMember, removeMember, selectFamilyMembers } from './reducer/familyReducer';
+import PersonDetails from '../PersonDetails/PersonDetails';
 
 const FamilyTree = ({editingView}: {editingView?: boolean}) => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -37,10 +38,7 @@ const FamilyTree = ({editingView}: {editingView?: boolean}) => {
             return;
         }
 
-        if (editMode && isEditMode !== editMode) {
-            setIsEditMode(editMode);
-        }
-
+        setIsEditMode(!!editMode);
         setSelectedMember(member);
         setIsDrawerOpen(!isDrawerOpen);
     };
@@ -66,23 +64,13 @@ const FamilyTree = ({editingView}: {editingView?: boolean}) => {
                     members.map((member: FamilyMember) =>
                         (
                             <li key={member.id}>
-                                {/*TODO extract to component*/}
                                 <div className={styles.personContainer}>
-                                    <div className={styles.personDetails}>
-                                        <div className={styles.personPicture}>
-                                            {member.picture && <img src={member.picture} alt="memberPicture"/>}
-                                        </div>
-                                        <div className={styles.personName}>
-                                            <div>{member.firstName}</div>
-                                            <div>{member.lastName}</div>
-                                            <div>{member.birthDate} - {member.deathDate}</div>
-                                        </div>
-                                    </div>
+                                    <PersonDetails member={member}/>
                                     <div className={styles.actionButtons}>
                                         {editingView && <div> {renderMemberButtons(member)}</div>}
                                     </div>
                                 </div>
-                                {renderMembers(member.children)}
+                                {!!member.children.length && renderMembers(member.children)}
                             </li>
                         ))
                 }

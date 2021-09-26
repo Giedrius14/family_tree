@@ -1,0 +1,33 @@
+.PersonDetails {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 10px;
+}
+
+.personPicture {
+    display: flex;
+    flex-direction: column;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #ccc;
+
+    img {
+        border-radius: inherit;
+        box-shadow: inherit;
+        height: inherit;
+        width: inherit;
+    }
+}
+
+.personName {
+    width: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}

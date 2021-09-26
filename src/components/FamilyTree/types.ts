@@ -6,5 +6,11 @@ export interface FamilyMember {
     birthDate: string;
     deathDate: string;
     picture: string;
+    relationship: string;
     children: any[] | FamilyMember[];
+}
+
+export enum FamilyRelationship {
+    Child = 'CHILD',
+    Sibling = 'SIBLING',
 }
