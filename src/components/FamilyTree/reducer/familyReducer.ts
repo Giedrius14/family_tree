@@ -21,7 +21,7 @@ const initialState: FamilyTreeState = {
             deathDate: '',
             parentId: '',
             picture: 'https://static.wikia.nocookie.net/lotr/images/e/e7/Gandalf_the_Grey.jpg',
-            relationship: '',
+            relationship: 'CHILD',
             children: [
                 '2',
                 '3'
@@ -118,7 +118,7 @@ const familySlice = createSlice({
     initialState,
     reducers: {
         addMember: (state, {payload: {formData, selectedMember}}: PayloadAction<FamilyAction>) => {
-            const parentId = formData.relationship === FamilyRelationship.Sibling ? state.members[selectedMember.parentId].id : selectedMember.parentId;
+            const parentId = formData.relationship === FamilyRelationship.Sibling ? state.members[selectedMember.parentId]?.id || '' : selectedMember.id;
 
             const newMember = {
                 ...formData,
@@ -133,7 +133,7 @@ const familySlice = createSlice({
             delete state.members[payload.id];
         },
         updateMember: (state, {payload: {formData, selectedMember}}: PayloadAction<FamilyAction>) => {
-            const parentId = formData.relationship === FamilyRelationship.Sibling ? state.members[selectedMember.parentId].parentId : selectedMember.parentId;
+            const parentId = formData.relationship === FamilyRelationship.Sibling ? state.members[selectedMember.parentId].parentId : selectedMember.parentId || '';
 
             state.members[selectedMember.id] = {
                 ...state.members[selectedMember.id],

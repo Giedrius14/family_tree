@@ -7,6 +7,7 @@ import CreateEditForm from '../CreateEditForm/CreateEditForm';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { addMember, removeMember, selectFamilyMembers } from './reducer/familyReducer';
 import PersonDetails from '../PersonDetails/PersonDetails';
+import DeleteDialog from '../DeleteDialog/DeleteDialog';
 
 const FamilyTree = ({editingView}: {editingView?: boolean}) => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -21,12 +22,13 @@ const FamilyTree = ({editingView}: {editingView?: boolean}) => {
                 formData: {
                     id: '0',
                     parentId: '',
+                    relationship: '',
                     firstName: 'Root',
                     lastName: '',
                     birthDate: '',
                     deathDate: '',
                     picture: '',
-                    children: []
+                    children: [],
                 },
                 selectedMember: {} as FamilyMember
             }));
@@ -43,9 +45,20 @@ const FamilyTree = ({editingView}: {editingView?: boolean}) => {
         setIsDrawerOpen(!isDrawerOpen);
     };
 
-    const deletePerson = (familyMember: FamilyMember) => (event: any) => {
-        //todo confirm delete dialog
+    const [isDialogOpen, setIsDialogOpen] = React.useState(false);
+
+    const openDeleteDialog = (familyMember: FamilyMember) => (event: any) => {
+        setSelectedMember(familyMember);
+        setIsDialogOpen(true);
+    };
+
+    const handleCloseDialog = () => {
+        setIsDialogOpen(false);
+    };
+
+    const deletePerson = (familyMember: FamilyMember) => {
         dispatch(removeMember(familyMember));
+        handleCloseDialog();
     };
 
     const renderMemberButtons = (familyMember: FamilyMember): any =>
@@ -53,7 +66,7 @@ const FamilyTree = ({editingView}: {editingView?: boolean}) => {
             <>
                 <Fab onClick={toggleDrawer(familyMember)} className={styles.miniFab}> <PersonAdd fontSize="small"/></Fab>
                 <Fab onClick={toggleDrawer(familyMember, true)} className={styles.miniFab}> <Create fontSize="small"/></Fab>
-                <Fab onClick={deletePerson(familyMember)} className={styles.miniFab}> <PersonRemove fontSize="small"/></Fab>
+                <Fab onClick={openDeleteDialog(familyMember)} className={styles.miniFab}> <PersonRemove fontSize="small"/></Fab>
             </>
         );
 
@@ -77,8 +90,6 @@ const FamilyTree = ({editingView}: {editingView?: boolean}) => {
             </ul>
         );
 
-    console.log('familyMembers', familyMembers);
-    //todo nice to have zoom, transform scale
     return (
         <div className={styles.FamilyTree}>
             <div className={styles.treeContainer}>
@@ -95,6 +106,7 @@ const FamilyTree = ({editingView}: {editingView?: boolean}) => {
                                  handleClose={toggleDrawer({} as FamilyMember)}
                 ></CreateEditForm>}
             </Drawer>
+            <DeleteDialog open={isDialogOpen} onClose={handleCloseDialog} onSubmit={() => deletePerson(selectedMember)}/>
         </div>
     );
 };

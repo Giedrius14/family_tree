@@ -6,7 +6,7 @@ import { FamilyMember, FamilyRelationship } from '../FamilyTree/types';
 import * as Yup from 'yup';
 import { Button, FormControl, FormHelperText, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
 import { useFormik } from 'formik';
-import { DatePicker, DateTimePicker } from '@mui/lab/';
+import { DatePicker } from '@mui/lab/';
 import PersonDetails from '../PersonDetails/PersonDetails';
 
 const validationSchema = Yup.object({
@@ -30,7 +30,7 @@ const CreateEditForm = ({selectedMember, isEditMode, handleClose}: {selectedMemb
                 birthDate: '',
                 deathDate: '',
                 picture: '',
-                relationship: ''
+                relationship: 'CHILD'
             }),
         validationSchema: validationSchema,
         onSubmit: (formData) => {
@@ -66,6 +66,7 @@ const CreateEditForm = ({selectedMember, isEditMode, handleClose}: {selectedMemb
                 </div>
             </div>
             <form className={styles.formContainer} onSubmit={formik.handleSubmit}>
+                {isEditMode && selectedMember.parentId !== '' &&
                 <FormControl fullWidth error={formik.touched.relationship && Boolean(formik.errors.relationship)}>
                     <InputLabel id="relationship-label">Relationship to {isEditMode ? 'current parent' : 'selected member'}</InputLabel>
                     <Select
@@ -79,6 +80,7 @@ const CreateEditForm = ({selectedMember, isEditMode, handleClose}: {selectedMemb
                     </Select>
                     {formik.errors.relationship && <FormHelperText>{formik.errors.relationship}</FormHelperText>}
                 </FormControl>
+                }
                 <TextField
                     id="firstName"
                     name="firstName"
@@ -103,7 +105,7 @@ const CreateEditForm = ({selectedMember, isEditMode, handleClose}: {selectedMemb
                         mask={'____/__/__'}
                         inputFormat="yyyy/MM/dd"
                         value={formik.values.birthDate}
-                        onChange={(option: Date | null) => formik.setFieldValue('birthDate', option?.toISOString().split('T')[0])}
+                        onChange={(option: any | Date) => formik.setFieldValue('birthDate', !isNaN(Date.parse(option)) && option.toISOString().split('T')[0])}
                         renderInput={(params: any) =>
                             <TextField {...params}
                                        id="birthDate"
@@ -114,12 +116,12 @@ const CreateEditForm = ({selectedMember, isEditMode, handleClose}: {selectedMemb
                     />
                     {formik.errors.birthDate && <FormHelperText>{formik.errors.birthDate}</FormHelperText>}
                 </FormControl>
-                <DateTimePicker
+                <DatePicker
                     label="Death Date"
                     mask={'____/__/__'}
                     inputFormat="yyyy/MM/dd"
                     value={formik.values.deathDate}
-                    onChange={(option, action) => formik.setFieldValue('deathDate', option)}
+                    onChange={(option: any | Date) => formik.setFieldValue('deathDate', !isNaN(Date.parse(option)) && option.toISOString().split('T')[0])}
                     renderInput={(params: any) =>
                         <TextField {...params}
                                    id="deathDate"
